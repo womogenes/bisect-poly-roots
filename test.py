@@ -3,6 +3,7 @@ import numpy as np
 from numpy.polynomial.polynomial import Polynomial
 from random import randrange
 import time
+from tqdm import tqdm
 
 from bisect_poly_roots import roots, poly_to_str
 
@@ -48,7 +49,9 @@ def test_one(deg=100):
 
 start_time = time.time()
 passed = True
-for _ in range(N):
+
+print(f"Running {N} tests")
+for _ in tqdm(range(N)):
     if not test_one(DEGREE):
         passed = False
         break

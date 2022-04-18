@@ -37,7 +37,7 @@ def peval(poly, x):
     return ans
 
 
-def roots(poly, error=0.0001):
+def roots(poly, error=1e-8):
     """
     poly: list of integers. poly[i] is coefficient of x^i.
     Returns the roots of poly as a list.
@@ -59,14 +59,6 @@ def roots(poly, error=0.0001):
     d_roots = sorted(roots(deriv, error=error))
 
     ans = set()
-
-    """
-    print()
-    print("poly:", poly)
-    print("deriv:", deriv)
-    print("d_str:", poly_to_str(deriv))
-    print("d_roots:", d_roots)
-    """
 
     # What if the derivative has no roots?
     if len(d_roots) == 0:
@@ -193,7 +185,7 @@ def roots(poly, error=0.0001):
 # Test stuff out
 if __name__ == "__main__":
     P = [-6, -4, -1, -8, -1, 4, 7, 9, 5, 9, 6]
-    r = roots(P, error=0.00000001)
+    r = roots(P)
 
     print()
     print(poly_to_str(P))

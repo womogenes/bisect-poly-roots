@@ -1,4 +1,5 @@
 # Test some random polynomials!
+from timeit import timeit
 import numpy as np
 from numpy.polynomial.polynomial import Polynomial
 from random import randrange
@@ -12,21 +13,21 @@ N = 1000
 DEGREE = 10
 
 
-def test_one(deg=100):
+def test_one(deg=10):
     while True:
         poly = list(np.random.randint(-10, 10, size=(deg + 1)))
         if poly[-1] != 0:
             break
 
     try:
-        test_roots = roots(poly, error=0.00000001)
+        test_roots = roots(poly, error=1e-8)
     except AssertionError as e:
         print(f"AssertionError for {poly}")
         return False
 
     np_poly = Polynomial(poly)
     real_roots = list(
-        set([x.real for x in np_poly.roots() if abs(x.imag) < 0.0000001]))
+        set([x.real for x in np_poly.roots() if abs(x.imag) < 1e-8]))
 
     if len(test_roots) != len(real_roots):
         print(f"Test failed for {poly}")

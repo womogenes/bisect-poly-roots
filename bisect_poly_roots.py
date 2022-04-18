@@ -1,7 +1,4 @@
-﻿from numpy import TooHardError
-
-
-def sign(x):
+﻿def sign(x):
     if x > 0:
         return 1
     if x < 0:
@@ -23,7 +20,7 @@ def derivative(poly):
 def poly_to_str(poly):
     result = ""
     for i in range(len(poly)):
-        result += f"{poly[i]}*x^{i} + "
+        result += f"{poly[i]}*x^{{{i}}} + "
     return result[:-2]
 
 
@@ -132,7 +129,7 @@ def roots(poly, error=0.0001):
                     lo = mid
             ans.add((lo + hi) / 2)
 
-    # Analyize right endpoint (this can probably be made less redundant)
+    # Analyze right endpoint (this can probably be made less redundant)
     f_right = peval(poly, d_roots[-1])
     if abs(f_right) < error:
         ans.add(d_roots[-1])
@@ -195,7 +192,7 @@ def roots(poly, error=0.0001):
 
 # Test stuff out
 if __name__ == "__main__":
-    P = [0, 2, -8, -4, -4, 7, 1, 3, -8, -3, -6]
+    P = [-6, -4, -1, -8, -1, 4, 7, 9, 5, 9, 6]
     r = roots(P, error=0.00000001)
 
     print()
